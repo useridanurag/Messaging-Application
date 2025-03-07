@@ -1,4 +1,5 @@
 import express from "express";
+import isLoggedIn from "../middlewares/isLoggedIn.js"
 import userControllers from "../controllers/user.controller.js";
 const { register, login, logout, allUser } = userControllers;
 
@@ -8,7 +9,7 @@ router
     .post("/register", register)
     .post("/login", login)
     .post("/logout", logout)
-    .get("/allUser", allUser);
+    .get("/allUser",isLoggedIn, allUser);
 
 export default router;
 

@@ -83,6 +83,12 @@ const logout = async (req, res) => {
 
 const allUser = async (req, res) => {
     try {
+        const loggedInUser = req.user;
+        const filteredUser = await User.find({ _id: { $ne: loggedInUser._id } }).select("-password");
+        res.status(200).json({
+            message: "All users fetched.",
+            users: filteredUser,
+        })
 
     } catch (error) {
         console.log("Error in allUsers controller. " + error);
