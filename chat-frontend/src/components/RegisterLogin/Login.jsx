@@ -2,12 +2,30 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link } from "react-router";
-
+import axios from "../../axios"
 const Login = () => {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
   const [passwordVisible, setPasswordVisible] = useState(false);  // Toggle password visibility
   // Submit Logic
   const onSubmit = async (data) => {
+    const userInfo = {
+      email: data.email,
+      password: data.password,
+    };
+    try {
+      const response = await axios.post("/user/login", userInfo,
+        { withCredentials: true, }
+      );
+      if (response.data) {
+        localStorage.setItem("ChatData", JSON.stringify(response.data));
+        alert(response.data.message)
+      }
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        alert("Error : " + error.response.data.error);
+      }
+    }
 
   };
 

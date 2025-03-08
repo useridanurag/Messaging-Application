@@ -8,7 +8,7 @@ import Login from './components/RegisterLogin/Login'
 
 
 const App = () => {
-const authUser=true
+const authUser=false
   return <>
     <div className='flex h-screen text-gray-300'>
 
