@@ -4,11 +4,13 @@ import Right from './components/RightPart/Right'
 import { Routes, Route, Navigate } from "react-router";
 import Register from './components/RegisterLogin/Register'
 import Login from './components/RegisterLogin/Login'
+import { useSelector } from 'react-redux';
 
 
 
 const App = () => {
-const authUser=false
+  let authUser = useSelector((state) => state.auth);
+
   return <>
     <div className='flex h-screen text-gray-300'>
 
